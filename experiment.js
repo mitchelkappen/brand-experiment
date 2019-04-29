@@ -2,11 +2,11 @@
 <html>
   <head>
     <title>My experiment</title>
-    <script src="js/jspsych.js"></script>
-    <script src="js/plugins/jspsych-instructions.js"></script>
-    <script src="js/plugins/jspsych-html-keyboard-response.js"></script>
-    <script src="js/plugins/jspsych-image-keyboard-response.js"></script>
-    <script src="js/plugins/jspsych-survey-likert.js"></script>
+    <script src="plugins/jspsych.js"></script>
+    <script src="plugins/jspsych-instructions.js"></script>
+    <script src="plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="plugins/jspsych-image-keyboard-response.js"></script>
+    <script src="plugins/jspsych-survey-likert.js"></script>
     <link href="css/jspsych.css" rel="stylesheet" type="text/css"></link>
   </head>
   <body></body>
