@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+
 <html>
   <head>
     <title>My experiment</title>
+
     <script src="plugins/jspsych.js"></script>
     <script src="plugins/jspsych-instructions.js"></script>
     <script src="plugins/jspsych-html-keyboard-response.js"></script>
