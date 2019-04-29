@@ -52,12 +52,26 @@
       type: 'survey-likert',
       questions: [{prompt: "If Rabobank were not available, it would make little difference to me if I had to choose another brand", labels: scale_1},
       {prompt: " I consider myself to be highly loyal to Rabobank", labels: scale_1},
-      {prompt: " When another brand is on cheaper, I will generally use it rather than Rabobank", labels: scale_1}],
+      {prompt: " When another brand is cheaper, I will generally use it rather than Rabobank", labels: scale_1}],
+      };
+
+    var likert_scale_unilever = {
+      type: 'survey-likert',
+      questions: [{prompt: "If Unilever were not available, it would make little difference to me if I had to choose another brand", labels: scale_1},
+      prompt: " I consider myself to be highly loyal to Unilever", labels: scale_1},
+      {prompt: " When another brand is cheaper, I will generally use it rather than Unilever", labels: scale_1}],
+      };
+
+    var likert_scale_starbucks = {
+      type: 'survey-likert',
+      questions: [{prompt: "If Starbucks were not available, it would make little difference to me if I had to choose another brand", labels: scale_1},
+      {prompt: " I consider myself to be highly loyal to Starbucks", labels: scale_1},
+      {prompt: " When another brand is cheaper, I will generally use it rather than Starbucks", labels: scale_1}],
       };
       // Insert more brands here
 
     var likert_procedure = {
-      timeline: [likert_scale_rabo],
+      timeline: [likert_scale_rabo,likert_scale_unilever,likert_scale_starbucks],
       randomize_order: false,
       // repetitions: 3
     }
