@@ -25,9 +25,9 @@
 <script src='experiment.js'></script>
 
 <script>
-$( document ).ready(function() {
+
     jsPsych.init({
-             timeline: adaptive_n_back_experiment,
+             timeline: experiment,
              display_element: "getDisplayElement",
              fullscreen: true,
              on_trial_finish: function(data){
@@ -59,7 +59,7 @@ $( document ).ready(function() {
                  })
              }
             });
-});
+
 </script>
 </body>
 </html>
