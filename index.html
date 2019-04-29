@@ -1,23 +1,32 @@
-<!DOCTYPE html>
-<html>
-  <head>
+<!DOCTYPE html><html class=''>
+<head>
+    <meta charset='UTF-8'>
+    <meta name="robots" content="noindex">
     <title>My experiment</title>
 
-    <script src="plugins/jspsych.js"></script>
-    <link rel='stylesheet' type='text/css' href='jspsych.css'>
-    <link rel='stylesheet' type='text/css' href='default_style.css'>
-    <link rel='stylesheet' type='text/css' href='style.css'>
-    <script src="plugins/jspsych-instructions.js"></script>
-    <script src="plugins/jspsych-html-keyboard-response.js"></script>
-    <script src="plugins/jspsych-image-keyboard-response.js"></script>
-    <script src="plugins/jspsych-survey-likert.js"></script>
-    <link href="css/jspsych.css" rel="stylesheet" type="text/css"></link>
-  </head>
-  <body></body>
-  <script>
+<link rel='stylesheet' type='text/css' href='css/jspsych.css'>
+<link rel='stylesheet' type='text/css' href='css/default_style.css'>
+<link rel='stylesheet' type='text/css' href='css/style.css'>
+<link href="css/jspsych.css" rel="stylesheet" type="text/css"></link>
+</head>
+
+<body>
+<script src="plugins/jspsych.js"></script>
+<script src="plugins/jspsych-instructions.js"></script>
+<script src="plugins/jspsych-html-keyboard-response.js"></script>
+<script src="plugins/jspsych-image-keyboard-response.js"></script>
+<script src="plugins/jspsych-survey-likert.js"></script>
+<script src="plugins/jspsych-fullscreen.js"></script>
+
+<script>
 
     /* create timeline */
     var timeline = [];
+
+    timeline.push({
+        type: 'fullscreen',
+        fullscreen_mode: true
+      });
 
     /* create random participantID */
     var subject_id = jsPsych.randomization.randomID(5);
@@ -25,20 +34,6 @@
       subject: subject_id,
       });
 
-    /* define welcome message trial */
-/*    var welcome = {
-      type: "html-keyboard-response",
-      stimulus: "Welcome to the experiment. Press any key to begin."
-    };
-    timeline.push(welcome);
-
-    var welcome2 = {
-      type: "html-keyboard-response",
-      stimulus: "<p> Before we start the experiment, " +
-      "please fill out the questionnaire on the following few pages </p> "
-    };
-    timeline.push(welcome2);
-*/
     var welcome = {
       type: 'instructions',
       pages: ['Welcome to the experiment. Click next to begin.',
@@ -48,8 +43,8 @@
       show_page_number: false
     }
     timeline.push(welcome);
-    /* pre-questionnaire */
 
+    /* pre-questionnaire */
     // defining response scales that can be used.
     var scale_1 = ["Strongly Disagree","","Disagree","","Neutral","","Agree","","Strongly Agree"];
 
@@ -106,10 +101,13 @@
 }*/
 
     var factors = {
-      logos: ['img/rabo1.png', 'img/rabo2.png','img/rabo3.png'],
+      logos: ['img/rabo1.png', 'img/rabo2.png','img/rabo3.png',
+              'img/unilever1.png', 'img/unilever2.png','img/unilever3.png',
+              'img/starbucks1.png', 'img/starbucks2.png','img/starbucks3.png'],
       //      logos: [{'img/rabo1.png', data: {test_part: 'test'}}, {'img/rabo2.png'data: {test_part: 'test'}},{'img/rabo3.png'data: {test_part: 'test'}}],
       // words: ['<div style="font-size:60px;">sad</div>', '<div style="font-size:60px;">happy</div>','<div style="font-size:60px;">angry</div>']
-      words: ['img/happy.png','img/sad.png','img/angry.png']
+      words: ['img/good.png','img/bad.png','img/beneficial.png','img/harmful.png',
+              'img/desirable.png','img/undesirable.png','img/nice.png','img/awful.png']
     }
 
     var full_design = jsPsych.randomization.factorial(factors, 1);
@@ -177,11 +175,17 @@
 
     timeline.push(debrief_block);
 
+    timeline.push({
+      type: 'fullscreen',
+      fullscreen_mode: false
+    });
+
 
 
     /* start the experiment */
     jsPsych.init({
       timeline: timeline,
+      fullscreen: true,
       on_finish: function() {
       jsPsych.data.displayData(); // displaying in browser in trial by trial form
       //jsPsych.data.displayData('csv'); // displaying in browser in csv form
@@ -197,4 +201,5 @@
     });
 
   </script>
+  </body>
   </html>
