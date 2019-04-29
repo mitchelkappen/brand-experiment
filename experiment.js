@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class=''>
+<!DOCTYPE html>
 <html>
   <head>
     <title>My experiment</title>
