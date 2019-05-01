@@ -8,6 +8,13 @@
 <link rel='stylesheet' type='text/css' href='css/default_style.css'>
 <link rel='stylesheet' type='text/css' href='css/style.css'>
 <link href="css/jspsych.css" rel="stylesheet" type="text/css"></link>
+
+<style type="text/css">
+p.green { color:#00ff00;font-weight:bold;font-family:Calibri;font-size:20;left: 470px;top: 600px;position: fixed;   // Declared as static }
+span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   // Declared as static }
+p.midden {left: center; top: 600px; position: fixed;}
+</style>
+
 </head>
 
 <body>
@@ -18,6 +25,7 @@
 <script src="plugins/jspsych-survey-likert.js"></script>
 <script src="plugins/jspsych-fullscreen.js"></script>
 <script src="plugins/jspsych-categorize-image.js"></script>
+<script src="plugins/jspsych-categorize-html.js"></script>
 
 <script src='plugins/jspsych-call-function.js'></script>
 <script src='plugins/jspsych-survey-text.js'></script>
@@ -130,12 +138,21 @@
               'img/unilever1.png', 'img/unilever2.png','img/unilever3.png',
               'img/starbucks1.png', 'img/starbucks2.png','img/starbucks3.png'],
       //      logos: [{'img/rabo1.png', data: {test_part: 'test'}}, {'img/rabo2.png'data: {test_part: 'test'}},{'img/rabo3.png'data: {test_part: 'test'}}],
-      // words: ['<div style="font-size:60px;">sad</div>', '<div style="font-size:60px;">happy</div>','<div style="font-size:60px;">angry</div>']
-      words: ['img/good.png','img/bad.png','img/beneficial.png','img/harmful.png',
-              'img/desirable.png','img/undesirable.png','img/nice.png','img/awful.png']
+      words: ['<div style="font-size:60px;">good</div>', '<div style="font-size:60px;">bad</div>',
+              '<div style="font-size:60px;">beneficial</div>','<div style="font-size:60px;">harmful</div>',
+              '<div style="font-size:60px;">desirable</div>','<div style="font-size:60px;">undesirable</div>',
+              '<div style="font-size:60px;">nice</div>','<div style="font-size:60px;">awful</div>',]
+      // words: ['img/good.png','img/bad.png','img/beneficial.png','img/harmful.png',
+      //        'img/desirable.png','img/undesirable.png','img/nice.png','img/awful.png']
     }
 
+    var preloading = ['img/rabo1.png', 'img/rabo2.png','img/rabo3.png',
+            'img/unilever1.png', 'img/unilever2.png','img/unilever3.png',
+            'img/starbucks1.png', 'img/starbucks2.png','img/starbucks3.png'];
+
     var full_design = jsPsych.randomization.factorial(factors, 1);
+
+    var big_space = '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0';
 
 // show fixation cross
     var fixation = {
@@ -143,6 +160,7 @@
       stimulus: '<div style="font-size:60px;">+</div>',
       choices: jsPsych.NO_KEYS,
       trial_duration: 900,
+      prompt: '<p class="midden"><p class="green">Yes (F)' + big_space +  '<span class="red">No (J)</span> </p></p>',
       data: {test_part: 'fixation'}
     }
 // show company logo
@@ -153,6 +171,7 @@
       stimulus: jsPsych.timelineVariable('logos'),
       // stimulus: logos,
       choices: jsPsych.NO_KEYS,
+      prompt: '<p class="midden"><p class="green">Yes (F)' + big_space +  '<span class="red">No (J)</span> </p></p>',
       //data: jsPsych.timelineVariable('data'),
       trial_duration: 750,
       /* on_finish: function(data){ */
@@ -160,6 +179,22 @@
     } */
     }
 // show target word
+    var word = {
+      // type: 'image-keyboard-response',
+      type: "categorize-html",
+      data: { screen_type: 'targetWord'},
+      stimulus: jsPsych.timelineVariable('words'),
+      choices: ['f','j'],
+      data: jsPsych.timelineVariable('data'),
+      trial_duration: 1500,
+      //timeout_message: "Too Slow!"
+      show_stim_with_feedback: false,
+      incorrect_text: "<p class='prompt'> </p>",
+      prompt: '<p class="midden"><p class="green">Yes (F)' + big_space +  '<span class="red">No (J)</span> </p></p>',
+      feedback_duration: 1400, // duration of white before next trial starts
+      timeout_message: '<div class = centerbox><div class = center-text>Too Slow!</div></div>',
+    }
+/* This method is to be used when the target word is presented as an image
     var word = {
       // type: 'image-keyboard-response',
       type: "categorize-image",
@@ -171,10 +206,11 @@
       //timeout_message: "Too Slow!"
       show_stim_with_feedback: false,
       incorrect_text: "<p class='prompt'> </p>",
+      prompt: "<br><br><br><br><br><br><br><br><br><pre>Yes (F)                                        (J) No</pre>",
       feedback_duration: 1400, // duration of white before next trial starts
       timeout_message: '<div class = centerbox><div class = center-text>Respond Faster!</div></div>',
     }
-
+*/
     var test_procedure = {
       timeline: [fixation, test, word],
       timeline_variables: full_design,
@@ -218,6 +254,7 @@
     jsPsych.init({
       timeline: timeline,
       fullscreen: true,
+      show_preload_progress_bar: true,
       on_finish: function() {
       jsPsych.data.displayData(); // displaying in browser in trial by trial form
       //jsPsych.data.displayData('csv'); // displaying in browser in csv form
