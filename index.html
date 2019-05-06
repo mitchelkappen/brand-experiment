@@ -26,6 +26,7 @@ p.midden {left: center; top: 600px; position: fixed;}
 <script src="plugins/jspsych-fullscreen.js"></script>
 <script src="plugins/jspsych-categorize-image.js"></script>
 <script src="plugins/jspsych-categorize-html.js"></script>
+<script src="plugins/jspsych-survey-multi-choice.js"></script>
 
 <script src='plugins/jspsych-call-function.js'></script>
 <script src='plugins/jspsych-survey-text.js'></script>
@@ -69,28 +70,50 @@ p.midden {left: center; top: 600px; position: fixed;}
 
     var likert_scale_rabo = {
       type: 'survey-likert',
-      questions: [{prompt: "If Rabobank were not available, it would make little difference to me if I had to choose another brand", labels: scale_1},
-      {prompt: " I consider myself to be highly loyal to Rabobank", labels: scale_1},
-      {prompt: " When another brand is cheaper, I will generally use it rather than Rabobank", labels: scale_1}],
+      questions: [{prompt: "I am familiar with the brand Rabobank", labels: scale_1},
+      {prompt:  "If Rabobank were not available, it would make little difference to me if I had to choose another brand", labels: scale_1},
+      {prompt: "I consider myself to be highly loyal to Rabobank", labels: scale_1},
+      {prompt: "When another brand is cheaper, I will generally use it rather than Rabobank", labels: scale_1}],
       };
 
-    var likert_scale_unilever = {
+    var likert_scale_nike = {
       type: 'survey-likert',
-      questions: [{prompt: "If Unilever were not available, it would make little difference to me if I had to choose another brand", labels: scale_1},
-      {prompt: " I consider myself to be highly loyal to Unilever", labels: scale_1},
-      {prompt: " When another brand is cheaper, I will generally use it rather than Unilever", labels: scale_1}],
+      questions: [{prompt: "I am familiar with the brand Nike", labels: scale_1},
+      {prompt:  "If Nike were not available, it would make little difference to me if I had to choose another brand", labels: scale_1},
+      {prompt: "I consider myself to be highly loyal to Nike", labels: scale_1},
+      {prompt: "When another brand is cheaper, I will generally buy it rather than Nike", labels: scale_1}],
+      };
+
+    var likert_scale_pepsi = {
+      type: 'survey-likert',
+      questions: [{prompt: "I am familiar with the brand Pepsi", labels: scale_1},
+      {prompt:  "If Pepsi were not available, it would make little difference to me if I had to choose another brand", labels: scale_1},
+      {prompt: "I consider myself to be highly loyal to Pepsi", labels: scale_1},
+      {prompt: "When another brand is cheaper, I will generally buy it rather than Pepsi", labels: scale_1}],
       };
 
     var likert_scale_starbucks = {
       type: 'survey-likert',
-      questions: [{prompt: "If Starbucks were not available, it would make little difference to me if I had to choose another brand", labels: scale_1},
+      questions: [{prompt: "I am familiar with the brand Starbucks", labels: scale_1},
+      {prompt: "If Starbucks were not available, it would make little difference to me if I had to choose another brand", labels: scale_1},
       {prompt: " I consider myself to be highly loyal to Starbucks", labels: scale_1},
       {prompt: " When another brand is cheaper, I will generally use it rather than Starbucks", labels: scale_1}],
       };
       // Insert more brands here
 
+    var gender_options = ["Male","Female","Other"];
+    var age_options = ["<18","18-25","26-35","35-50","50+"];
+    var hand_options = ["Left","Right"];
+
+    var demographic_block = {
+      type: 'survey-multi-choice',
+      questions: [{prompt: "Gender:", options: gender_options, required:true, horizontal: true,},
+                  {prompt: "Age:", options: age_options, required: true, horizontal: true,},
+                  {prompt: "Dominant hand:", options: hand_options, required: true, horizontal: true,}],
+    };
+
     var likert_procedure = {
-      timeline: [likert_scale_rabo,likert_scale_unilever,likert_scale_starbucks],
+      timeline: [likert_scale_rabo,likert_scale_pepsi,likert_scale_nike,likert_scale_starbucks,demographic_block],
       randomize_order: false,
       // repetitions: 3
     }
@@ -102,17 +125,15 @@ p.midden {left: center; top: 600px; position: fixed;}
     var instructions = {
       type: "html-keyboard-response",
       stimulus: "<p>In this experiment, you will first see a fixation cross " +
-          "of the screen.</p><p>Then, shortly, a <strong>logo</strong> " +
+          "on the screen.</p><p>Then, shortly, a <strong>logo</strong> " +
           "is shown followed by a <strong> word </strong>.</p>" +
           "<p>Answer whether you feel the word matches the logo " +
           "as fast as you can.</p>" +
-          "<p> Press the <strong> F-key for yes </strong> and the <strong> J-key for no </strong> </p>" +
+          "<p> Use your <strong> right hand </strong> to respond </p><br>" +
+          "<p> Press the <strong> K-key for yes </strong> and the <strong> L-key for no </strong> </p><br><br>" +
+          "<p> You will first have a practice round to get used to the task and its tempo </p>" +
+          "<p> Press the <strong> P-key </strong> at any time to have a 30 second break </p>" +
           "<div style='width: 700px;'>"+
-          /*"<div style='float: left;'><img src='img/blue.png'></img>" +
-          "<p class='small'><strong>Press the F key</strong></p></div>" +
-          "<div class='float: right;'><img src='img/orange.png'></img>" +
-          "<p class='small'><strong>Press the J key</strong></p></div>" +
-          "</div>"+*/
           "<p>Press any key to begin.</p>",
       post_trial_gap: 1000
     };
@@ -120,37 +141,31 @@ p.midden {left: center; top: 600px; position: fixed;}
 
 // input cut part here
 
-/*var factors = {
-  logos: [
-    {stimulus: "img/rabo1.png", data: {test_part: 'test'}},
-    {stimulus: "img/rabo2.png", data: {test_part: 'test'}},
-    {stimulus: "img/rabo3.png", data: {test_part: 'test'}},
-  ]
-  words: [
-    {stimulus: "img/happy.png", data: {test_part: 'word'}},
-    {stimulus: "img/angry.png", data: {test_part: 'word'}},
-    {stimulus: "img/sad.png", data: {test_part: 'word'}},
-  ]
-}*/
-
     var factors = {
       logos: ['img/rabo1.png', 'img/rabo2.png','img/rabo3.png',
-              'img/unilever1.png', 'img/unilever2.png','img/unilever3.png',
+              'img/pepsi1.png', 'img/pepsi2.png','img/pepsi3.png',
+              'img/nike1.png', 'img/nike2.png','img/nike3.png',
               'img/starbucks1.png', 'img/starbucks2.png','img/starbucks3.png'],
       //      logos: [{'img/rabo1.png', data: {test_part: 'test'}}, {'img/rabo2.png'data: {test_part: 'test'}},{'img/rabo3.png'data: {test_part: 'test'}}],
-      words: ['<div style="font-size:60px;">good</div>', '<div style="font-size:60px;">bad</div>',
-              '<div style="font-size:60px;">beneficial</div>','<div style="font-size:60px;">harmful</div>',
-              '<div style="font-size:60px;">desirable</div>','<div style="font-size:60px;">undesirable</div>',
-              '<div style="font-size:60px;">nice</div>','<div style="font-size:60px;">awful</div>',]
+      words: ['<div style="font-size:60px;">expensive</div>', '<div style="font-size:60px;">fair</div>',
+              '<div style="font-size:60px;">high quality</div>','<div style="font-size:60px;">desirable</div>',]
       // words: ['img/good.png','img/bad.png','img/beneficial.png','img/harmful.png',
       //        'img/desirable.png','img/undesirable.png','img/nice.png','img/awful.png']
     }
 
+    var practice_factors = {
+      practice_logos: ['img/unilever1.png', 'img/unilever2.png','img/unilever3.png'],
+      practice_words: ['<div style="font-size:60px;">good</div>', '<div style="font-size:60px;">bad</div>']
+    }
+
     var preloading = ['img/rabo1.png', 'img/rabo2.png','img/rabo3.png',
-            'img/unilever1.png', 'img/unilever2.png','img/unilever3.png',
+            'img/pepsi1.png', 'img/pepsi2.png','img/pepsi3.png',
+            'img/nike1.png', 'img/nike2.png','img/nike3.png',
             'img/starbucks1.png', 'img/starbucks2.png','img/starbucks3.png'];
 
     var full_design = jsPsych.randomization.factorial(factors, 1);
+
+    var practice_design = jsPsych.randomization.factorial(practice_factors, 1);
 
     var big_space = '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0';
 
@@ -158,42 +173,93 @@ p.midden {left: center; top: 600px; position: fixed;}
     var fixation = {
       type: 'html-keyboard-response',
       stimulus: '<div style="font-size:60px;">+</div>',
-      choices: jsPsych.NO_KEYS,
+      choices: ['p'],
       trial_duration: 900,
-      prompt: '<p class="midden"><p class="green">Yes (F)' + big_space +  '<span class="red">No (J)</span> </p></p>',
-      data: {test_part: 'fixation'}
+      prompt: '<p class="midden"><p class="green">Yes (K)' + big_space +  '<span class="red">No (L)</span> </p></p>',
+      data: {test_part: 'fixation'},
+      on_finish: function(data){
+      if (data.key_press == 80) {
+        jsPsych.pauseExperiment();
+        setTimeout(jsPsych.resumeExperiment, 30000);
+                                  }
+                                }
     }
 // show company logo
     var test = {
       type: "image-keyboard-response",
-      // type: "categorize-image",
       data: { screen_type: 'logo'},
       stimulus: jsPsych.timelineVariable('logos'),
-      // stimulus: logos,
-      choices: jsPsych.NO_KEYS,
-      prompt: '<p class="midden"><p class="green">Yes (F)' + big_space +  '<span class="red">No (J)</span> </p></p>',
-      //data: jsPsych.timelineVariable('data'),
+      choices: ['p'],
+      prompt: '<p class="midden"><p class="green">Yes (K)' + big_space +  '<span class="red">No (L)</span> </p></p>',
       trial_duration: 750,
-      /* on_finish: function(data){ */
-      /* data.correct = data.key_press == jsPsych.pluginAPI.convertKeyCharacterToKeyCode(data.correct_response);
-    } */
+      data: {test_part: 'logo'},
+      on_finish: function(data){
+      if (data.key_press == 80) {
+        jsPsych.pauseExperiment();
+        setTimeout(jsPsych.resumeExperiment, 30000);
+                                  }
+                                  prompt: 'TEST';
+                                }
+    }
+// show practice logo
+    var practice_test = {
+      type: "image-keyboard-response",
+      data: { screen_type: 'practice_logo'},
+      stimulus: jsPsych.timelineVariable('practice_logos'),
+      choices: ['p'],
+      prompt: '<p class="midden"><p class="green">Yes (K)' + big_space +  '<span class="red">No (L)</span> </p></p>',
+      trial_duration: 750,
+      data: {test_part: 'practice logo'},
+      on_finish: function(data){
+      if (data.key_press == 80) {
+        jsPsych.pauseExperiment();
+        setTimeout(jsPsych.resumeExperiment, 30000);
+        prompt: 'TEST';
+                                  }
+                                }
     }
 // show target word
     var word = {
-      // type: 'image-keyboard-response',
       type: "categorize-html",
       data: { screen_type: 'targetWord'},
       stimulus: jsPsych.timelineVariable('words'),
-      choices: ['f','j'],
+      choices: ['k','l','p'], //a-s for left-handed, k-l for right-handed
       data: jsPsych.timelineVariable('data'),
       trial_duration: 1500,
-      //timeout_message: "Too Slow!"
       show_stim_with_feedback: false,
       incorrect_text: "<p class='prompt'> </p>",
-      prompt: '<p class="midden"><p class="green">Yes (F)' + big_space +  '<span class="red">No (J)</span> </p></p>',
+      prompt: '<p class="midden"><p class="green">Yes (K)' + big_space +  '<span class="red">No (L)</span> </p></p>',
       feedback_duration: 1400, // duration of white before next trial starts
       timeout_message: '<div class = centerbox><div class = center-text>Too Slow!</div></div>',
+      data: {test_part: 'word'},
+      on_finish: function(data){
+      if (data.key_press == 80) {
+        jsPsych.pauseExperiment();
+        setTimeout(jsPsych.resumeExperiment, 30000);
+                                  }
+                                }
     }
+// show practice target word
+    var practice_word = {
+      type: "categorize-html",
+      data: { screen_type: 'practice_targetWord'},
+      stimulus: jsPsych.timelineVariable('practice_words'),
+      choices: ['k','l','p'], //a-s for left-handed, k-l for right-handed
+      data: jsPsych.timelineVariable('data'),
+      trial_duration: 1500,
+      show_stim_with_feedback: false,
+      incorrect_text: "<p class='prompt'> </p>",
+      prompt: '<p class="midden"><p class="green">Yes (K)' + big_space +  '<span class="red">No (L)</span> </p></p>',
+      feedback_duration: 1400, // duration of white before next trial starts
+      timeout_message: '<div class = centerbox><div class = center-text>Too Slow!</div></div>',
+      data: {test_part: 'practice word'},
+      on_finish: function(data){
+      if (data.key_press == 80) {
+        jsPsych.pauseExperiment();
+        setTimeout(jsPsych.resumeExperiment, 30000);
+                                  }
+                                }
+                              }
 /* This method is to be used when the target word is presented as an image
     var word = {
       // type: 'image-keyboard-response',
@@ -211,33 +277,48 @@ p.midden {left: center; top: 600px; position: fixed;}
       timeout_message: '<div class = centerbox><div class = center-text>Respond Faster!</div></div>',
     }
 */
+    var practice_procedure = {
+      timeline: [fixation, practice_test, practice_word],
+      timeline_variables: practice_design,
+      randomize_order: false,
+      repetitions: 1
+    }
+
     var test_procedure = {
       timeline: [fixation, test, word],
       timeline_variables: full_design,
       randomize_order: true,
-      // repetitions: 3
+      repetitions: 3
     }
+    timeline.push(practice_procedure);
+
+    var practice_end = {
+      type: "html-keyboard-response",
+      stimulus: "<p>You finished the practice round. The actual experiment will now begin </p> " +
+          "<p> As a reminder: use the <strong> K-key for yes </strong> and the <strong> L-key for no </strong> </p><br><br>" +
+          "<p> Press the <strong> P-key </strong> at any time to have a 30 second break </p>" +
+          "<div style='width: 700px;'>"+
+          /*"<div style='float: left;'><img src='img/blue.png'></img>" +
+          "<p class='small'><strong>Press the F key</strong></p></div>" +
+          "<div class='float: right;'><img src='img/orange.png'></img>" +
+          "<p class='small'><strong>Press the J key</strong></p></div>" +
+          "</div>"+*/
+          "<p>Press any key to begin.</p>",
+      post_trial_gap: 1000
+    };
+
+    timeline.push(practice_end);
 
     timeline.push(test_procedure);
 
     /* define debrief */
-
     var debrief_block = {
       type: "html-keyboard-response",
       stimulus: function() {
 
     var trials = jsPsych.data.get().filter({test_part: 'test'});
-    // var correct_trials = trials.filter({correct: true});
-    // var accuracy = Math.round(correct_trials.count() / trials.count() * 100);
-    // var rt = Math.round(correct_trials.select('rt').mean());
     var rt = Math.round(trials.select('rt').mean());
     var trialNums = trials.count();
-/*
-    return "<p>Number of Trials "+trialNums+"% of the trials.</p>"+
-          "<p>Average response time on Happy x Rabo = "+rt+"ms.</p>"+
-          "<p>Average response time on Sad x Rabo = "+rt+"ms.</p>"+
-          "<p>Average response time on Angry x Rabo = "+rt+"ms.</p>"+
-          "<p>Press any key to complete the experiment. Thank you!</p>"; */
           }
         };
 
@@ -247,8 +328,6 @@ p.midden {left: center; top: 600px; position: fixed;}
       type: 'fullscreen',
       fullscreen_mode: false
     });
-
-
 
     /* start the experiment */
     jsPsych.init({
