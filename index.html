@@ -104,12 +104,14 @@ p.midden {left: center; top: 600px; position: fixed;}
     var gender_options = ["Male","Female","Other"];
     var age_options = ["<18","18-25","26-35","35-50","50+"];
     var hand_options = ["Left","Right"];
+    var occupation_options = ["Student","Employed","Other"]
 
     var demographic_block = {
       type: 'survey-multi-choice',
       questions: [{prompt: "Gender:", options: gender_options, required:true, horizontal: true,},
                   {prompt: "Age:", options: age_options, required: true, horizontal: true,},
-                  {prompt: "Dominant hand:", options: hand_options, required: true, horizontal: true,}],
+                  {prompt: "Dominant hand:", options: hand_options, required: true, horizontal: true,},
+                  {prompt: "Ocupation:", options: occupation_options, required: true, horizontal: true}],
     };
 
     var likert_procedure = {
