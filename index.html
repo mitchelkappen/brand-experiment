@@ -10,9 +10,9 @@
 <link href="css/jspsych.css" rel="stylesheet" type="text/css"></link>
 
 <style type="text/css">
-p.green { color:#00ff00;font-weight:bold;font-family:Calibri;font-size:20;left: 32%;top: 70%;position: fixed; text-align: center;   // Declared as static }
+span.green { color:#00ff00;font-weight:bold;font-family:Calibri;font-size:20;    // Declared as static }
 span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   // Declared as static }
-p.midden {left: center; top: 600px; position: fixed;}
+.midden {left: center; top: 600px; position: fixed;}
 </style>
 
 </head>
@@ -177,7 +177,7 @@ p.midden {left: center; top: 600px; position: fixed;}
       stimulus: '<div style="font-size:60px;">+</div>',
       choices: ['p'],
       trial_duration: 900,
-      prompt: '<p class="midden"><p class="green">Yes (K)' + big_space +  '<span class="red">No (L)</span> </p></p>',
+      prompt: '<div style= width:100vw ><div style="position:absolute; top:60vw; left:33%; display: inline-block" ;=""><span class="green"> Yes (K) </span></div> <div style="position:absolute; top:60vw; right:33%; display: inline-block" ;=""><span class="red"> No (L)</span></div></div>',
       data: {test_part: 'fixation'},
       on_finish: function(data){
       if (data.key_press == 80) {
@@ -192,7 +192,7 @@ p.midden {left: center; top: 600px; position: fixed;}
       data: { screen_type: 'logo'},
       stimulus: jsPsych.timelineVariable('logos'),
       choices: ['p'],
-      prompt: '<p class="midden"><p class="green">Yes (K)' + big_space +  '<span class="red">No (L)</span> </p></p>',
+      prompt: '<div style= width:100vw ><div style="position:absolute; top:60vw; left:33%; display: inline-block" ;=""><span class="green"> Yes (K) </span></div> <div style="position:absolute; top:60vw; right:33%; display: inline-block" ;=""><span class="red"> No (L)</span></div></div>',
       trial_duration: 750,
       data: {test_part: 'logo'},
       on_finish: function(data){
@@ -209,7 +209,7 @@ p.midden {left: center; top: 600px; position: fixed;}
       data: { screen_type: 'practice_logo'},
       stimulus: jsPsych.timelineVariable('practice_logos'),
       choices: ['p'],
-      prompt: '<p class="midden"><p class="green">Yes (K)' + big_space +  '<span class="red">No (L)</span> </p></p>',
+      prompt: '<div style= width:100vw ><div style="position:absolute; top:60vw; left:33%; display: inline-block" ;=""><span class="green"> Yes (K) </span></div> <div style="position:absolute; top:60vw; right:33%; display: inline-block" ;=""><span class="red"> No (L)</span></div></div>',
       trial_duration: 750,
       data: {test_part: 'practice logo'},
       on_finish: function(data){
@@ -230,7 +230,7 @@ p.midden {left: center; top: 600px; position: fixed;}
       //trial_duration: 1500,
       show_stim_with_feedback: false,
       incorrect_text: "<p class='prompt'> </p>",
-      prompt: '<p class="midden"><p class="green">Yes (K)' + big_space +  '<span class="red">No (L)</span> </p></p>',
+      prompt: '<div style= width:100vw ><div style="position:absolute; top:60vw; left:33%; display: inline-block" ;=""><span class="green"> Yes (K) </span></div> <div style="position:absolute; top:60vw; right:33%; display: inline-block" ;=""><span class="red"> No (L)</span></div></div>',
       feedback_duration: 1400, // duration of white before next trial starts
       timeout_message: '<div class = centerbox><div class = center-text>Too Slow!</div></div>',
       data: {test_part: 'word'},
@@ -251,7 +251,8 @@ p.midden {left: center; top: 600px; position: fixed;}
       //trial_duration: 1500,
       show_stim_with_feedback: false,
       incorrect_text: "<p class='prompt'> </p>",
-      prompt: '<p class="midden"><p class="green">Yes (K)' + big_space +  '<span class="red">No (L)</span> </p></p>',
+      // prompt: '<p class="midden"><span class="green">Yes (K)' + big_space +  '<span class="red">No (L)</span> </p></p>',
+      prompt: '<div style= width:100vw ><div style="position:absolute; top:60vw; left:33%; display: inline-block" ;=""><span class="green"> Yes (K) </span></div> <div style="position:absolute; top:60vw; right:33%; display: inline-block" ;=""><span class="red"> No (L)</span></div></div>',
       feedback_duration: 1400, // duration of white before next trial starts
       timeout_message: '<div class = centerbox><div class = center-text>Too Slow!</div></div>',
       data: {test_part: 'practice word'},
