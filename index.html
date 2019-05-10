@@ -85,7 +85,7 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
       type: 'image-slider-response',
       stimulus: rabo_pre_img,
       labels: ['Not at all familiar','Very familiar'],
-      prompt: "<p>How familiar is this logo to you?</p>",
+      prompt: "<p>How familiar are you with this logo?</p>",
       response_ends_trial: true
     }
 
@@ -93,7 +93,7 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
       type: 'image-slider-response',
       stimulus: pepsi_pre_img,
       labels: ['Not at all familiar','Very familiar'],
-      prompt: "<p>How familiar is this logo to you?</p>",
+      prompt: "<p>How familiar are you with this logo?</p>",
       response_ends_trial: true
     }
 
@@ -101,7 +101,7 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
       type: 'image-slider-response',
       stimulus: nike_pre_img,
       labels: ['Not at all familiar','Very familiar'],
-      prompt: "<p>How familiar is this logo to you?</p>",
+      prompt: "<p>How familiar are you with this logo?</p>",
       response_ends_trial: true
     }
 
@@ -109,7 +109,7 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
       type: 'image-slider-response',
       stimulus: starbucks_pre_img,
       labels: ['Not at all familiar','Very familiar'],
-      prompt: "<p>How familiar is this logo to you?</p>",
+      prompt: "<p>How familiar are you with this logo?</p>",
       response_ends_trial: true
     }
 
@@ -191,32 +191,32 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
 
   if (condition < .5) { // If condition is 1, they get to see the images with pools
     var factors = {
-      logos: ['img/rabo1.png', 'img/pepsi1.png', 'img/nike1.png', 'img/starbucks1.png'],
+      logos: ['img/rabo1.jpg', 'img/pepsi1.jpg', 'img/nike1.jpg', 'img/starbucks1.jpg'],
       words: ['<div style="font-size:60px;">expensive</div>', '<div style="font-size:60px;">fair</div>',
               '<div style="font-size:60px;">high quality</div>','<div style="font-size:60px;">desirable</div>',]
           };
     var practice_factors = { // make it consistent for the practice round
-      practice_logos: ['img/unilever1.png'],
+      practice_logos: ['img/unilever1.jpg'],
       practice_words: ['<div style="font-size:60px;">expensive</div>', '<div style="font-size:60px;">fair</div>',
                        '<div style="font-size:60px;">high quality</div>','<div style="font-size:60px;">desirable</div>',]
     };
 } else { //  If condition is 2, they get to see the images without pools
     var factors = {
-      logos: ['img/rabo2.png', 'img/pepsi2.png', 'img/nike2.png', 'img/starbucks2.png'],
+      logos: ['img/rabo2.jpg', 'img/pepsi2.jpg', 'img/nike2.jpg', 'img/starbucks2.jpg'],
       words: ['<div style="font-size:60px;">expensive</div>', '<div style="font-size:60px;">fair</div>',
               '<div style="font-size:60px;">high quality</div>','<div style="font-size:60px;">desirable</div>',]
             };
     var practice_factors = { // make it consistent for the practice round
-      practice_logos: ['img/unilever2.png'],
+      practice_logos: ['img/unilever2.jpg'],
       practice_words: ['<div style="font-size:60px;">expensive</div>', '<div style="font-size:60px;">fair</div>',
                        '<div style="font-size:60px;">high quality</div>','<div style="font-size:60px;">desirable</div>',]
             };
     };
 
-    var preloading = ['img/rabo1.png', 'img/rabo2.png','img/rabo3.png',
-            'img/pepsi1.png', 'img/pepsi2.png','img/pepsi3.png',
-            'img/nike1.png', 'img/nike2.png','img/nike3.png',
-            'img/starbucks1.png', 'img/starbucks2.png','img/starbucks3.png'];
+    var preloading = ['img/rabo1.jpg', 'img/rabo2.jpg',
+            'img/pepsi1.jpg', 'img/pepsi2.jpg',
+            'img/nike1.jpg', 'img/nike2.jpg',
+            'img/starbucks1.jpg', 'img/starbucks2.jpg'];
 
     var full_design = jsPsych.randomization.factorial(factors, 1);
 
