@@ -118,34 +118,34 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
 
     var likert_scale_rabo = {
       type: 'survey-likert',
-      questions: [{prompt: "I am familiar with the brand Rabobank", labels: scale_1},
-      {prompt:  "If Rabobank were not available, it would make little difference to me if I had to choose another brand", labels: scale_1},
-      {prompt: "I consider myself to be highly loyal to Rabobank", labels: scale_1},
-      {prompt: "When another brand is cheaper, I will generally use it rather than Rabobank", labels: scale_1}],
+      questions: [{prompt: "I am familiar with the brand Rabobank", labels: scale_1, required:true},
+      {prompt:  "If Rabobank were not available, it would make little difference to me if I had to choose another brand", labels: scale_1, required:true},
+      {prompt: "I consider myself to be highly loyal to Rabobank", labels: scale_1, required:true},
+      {prompt: "When another brand is cheaper, I will generally use it rather than Rabobank", labels: scale_1, required:true}],
       };
 
     var likert_scale_nike = {
       type: 'survey-likert',
-      questions: [{prompt: "I am familiar with the brand Nike", labels: scale_1},
-      {prompt:  "If Nike were not available, it would make little difference to me if I had to choose another brand", labels: scale_1},
-      {prompt: "I consider myself to be highly loyal to Nike", labels: scale_1},
-      {prompt: "When another brand is cheaper, I will generally buy it rather than Nike", labels: scale_1}],
+      questions: [{prompt: "I am familiar with the brand Nike", labels: scale_1, required:true},
+      {prompt:  "If Nike were not available, it would make little difference to me if I had to choose another brand", labels: scale_1, required:true},
+      {prompt: "I consider myself to be highly loyal to Nike", labels: scale_1, required:true},
+      {prompt: "When another brand is cheaper, I will generally buy it rather than Nike", labels: scale_1, required:true}],
       };
 
     var likert_scale_pepsi = {
       type: 'survey-likert',
-      questions: [{prompt: "I am familiar with the brand Pepsi", labels: scale_1},
-      {prompt:  "If Pepsi were not available, it would make little difference to me if I had to choose another brand", labels: scale_1},
-      {prompt: "I consider myself to be highly loyal to Pepsi", labels: scale_1},
-      {prompt: "When another brand is cheaper, I will generally buy it rather than Pepsi", labels: scale_1}],
+      questions: [{prompt: "I am familiar with the brand Pepsi", labels: scale_1, required:true},
+      {prompt:  "If Pepsi were not available, it would make little difference to me if I had to choose another brand", labels: scale_1, required:true},
+      {prompt: "I consider myself to be highly loyal to Pepsi", labels: scale_1, required:true},
+      {prompt: "When another brand is cheaper, I will generally buy it rather than Pepsi", labels: scale_1, required:true}],
       };
 
     var likert_scale_starbucks = {
       type: 'survey-likert',
-      questions: [{prompt: "I am familiar with the brand Starbucks", labels: scale_1},
-      {prompt: "If Starbucks were not available, it would make little difference to me if I had to choose another brand", labels: scale_1},
-      {prompt: " I consider myself to be highly loyal to Starbucks", labels: scale_1},
-      {prompt: " When another brand is cheaper, I will generally use it rather than Starbucks", labels: scale_1}],
+      questions: [{prompt: "I am familiar with the brand Starbucks", labels: scale_1, required:true},
+      {prompt: "If Starbucks were not available, it would make little difference to me if I had to choose another brand", labels: scale_1, required:true},
+      {prompt: " I consider myself to be highly loyal to Starbucks", labels: scale_1, required:true},
+      {prompt: " When another brand is cheaper, I will generally use it rather than Starbucks", labels: scale_1, required:true}],
       };
       // Insert more brands here
 
@@ -156,10 +156,10 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
 
     var demographic_block = {
       type: 'survey-multi-choice',
-      questions: [{prompt: "Gender:", options: gender_options, required:false, horizontal: true,},
-                  {prompt: "Age:", options: age_options, required: false, horizontal: true,},
-                  {prompt: "Dominant hand:", options: hand_options, required: false, horizontal: true,},
-                  {prompt: "Ocupation:", options: occupation_options, required: false, horizontal: true}],
+      questions: [{prompt: "Gender:", options: gender_options, required:true, horizontal: true,},
+                  {prompt: "Age:", options: age_options, required: true, horizontal: true,},
+                  {prompt: "Dominant hand:", options: hand_options, required: true, horizontal: true,},
+                  {prompt: "Ocupation:", options: occupation_options, required: true, horizontal: true}],
     };
 
     var likert_procedure = {
@@ -183,6 +183,7 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
           "<p> Press the <strong> K-key for yes </strong> and the <strong> L-key for no </strong> </p><br><br>" +
           "<p> You will first have a practice round to get used to the task and its tempo </p>" +
           "<div style='width: 700px;'>"+
+          "<p><br> Put your index finger on the K-key and your middle finger on the L-key</p>" +
           "<p>Press any key to begin.</p>",
       post_trial_gap: 1000
     };
@@ -228,7 +229,7 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
       stimulus: '<div style="font-size:60px;">+</div>',
       choices: ['p'],
       trial_duration: 900,
-      prompt: '<div style= width:100vw ><div style="position:absolute; top:66vh; left:33%; display: inline-block" ;=""><span class="green"> Yes (K) </span></div> <div style="position:absolute; top:66vh; right:33%; display: inline-block" ;=""><span class="red"> No (L)</span></div></div>',
+      prompt: '<div style= width:100vw ><div style="position:absolute; top:66vh; left:33%; display: inline-block" ;=""><span class="green"> Yes (K) </span></div> <div style="position:absolute; top:66vh; right:33%; display: inline-block" ;=""><span class="red"> (L) No</span></div></div>',
       data: {test_part: 'fixation'},
     }
 
@@ -245,7 +246,7 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
       data: { screen_type: 'logo'},
       stimulus: jsPsych.timelineVariable('logos'),
       choices: ['p'],
-      prompt: '<div style= width:100vw ><div style="position:absolute; top:66vh; left:33%; display: inline-block" ;=""><span class="green"> Yes (K) </span></div> <div style="position:absolute; top:66vh; right:33%; display: inline-block" ;=""><span class="red"> No (L)</span></div></div>',
+      prompt: '<div style= width:100vw ><div style="position:absolute; top:66vh; left:33%; display: inline-block" ;=""><span class="green"> Yes (K) </span></div> <div style="position:absolute; top:66vh; right:33%; display: inline-block" ;=""><span class="red"> (L) No</span></div></div>',
       trial_duration: 750,
       data: {test_part: 'logo'},
     }
@@ -255,7 +256,7 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
       data: { screen_type: 'practice_logo'},
       stimulus: jsPsych.timelineVariable('practice_logos'),
       choices: ['p'],
-      prompt: '<div style= width:100vw ><div style="position:absolute; top:66vh; left:33%; display: inline-block" ;=""><span class="green"> Yes (K) </span></div> <div style="position:absolute; top:66vh; right:33%; display: inline-block" ;=""><span class="red"> No (L)</span></div></div>',
+      prompt: '<div style= width:100vw ><div style="position:absolute; top:66vh; left:33%; display: inline-block" ;=""><span class="green"> Yes (K) </span></div> <div style="position:absolute; top:66vh; right:33%; display: inline-block" ;=""><span class="red"> (L) No</span></div></div>',
       trial_duration: 750,
       data: {test_part: 'practice logo'},
     }
@@ -269,7 +270,7 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
       trial_duration: 1500,
       show_stim_with_feedback: false,
       incorrect_text: "<p class='prompt'> </p>",
-      prompt: '<div style= width:100vw ><div style="position:absolute; top:66vh; left:33%; display: inline-block" ;=""><span class="green"> Yes (K) </span></div> <div style="position:absolute; top:66vh; right:33%; display: inline-block" ;=""><span class="red"> No (L)</span></div></div>',
+      prompt: '<div style= width:100vw ><div style="position:absolute; top:66vh; left:33%; display: inline-block" ;=""><span class="green"> Yes (K) </span></div> <div style="position:absolute; top:66vh; right:33%; display: inline-block" ;=""><span class="red"> (L) No</span></div></div>',
       feedback_duration: 1400, // duration of white before next trial starts
       timeout_message: '<div class = centerbox><div class = center-text>Too Slow!</div></div>',
       data: {test_part: 'word'},
@@ -284,7 +285,7 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
       trial_duration: 1500,
       show_stim_with_feedback: false,
       incorrect_text: "<p class='prompt'> </p>",
-      prompt: '<div style= width:100vw ><div style="position:absolute; top:66vh; left:33%; display: inline-block" ;=""><span class="green"> Yes (K) </span></div> <div style="position:absolute; top:66vh; right:33%; display: inline-block" ;=""><span class="red"> No (L)</span></div></div>',
+      prompt: '<div style= width:100vw ><div style="position:absolute; top:66vh; left:33%; display: inline-block" ;=""><span class="green"> Yes (K) </span></div> <div style="position:absolute; top:66vh; right:33%; display: inline-block" ;=""><span class="red"> (L) No</span></div></div>',
       feedback_duration: 1400, // duration of white before next trial starts
       timeout_message: '<div class = centerbox><div class = center-text>Too Slow!</div></div>',
       data: {test_part: 'practice word'},
@@ -297,6 +298,17 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
       repetitions: 1
     }
 
+    var practice_end = {
+      type: "html-keyboard-response",
+      stimulus: "<p>You finished the practice round. The actual experiment will now begin </p> " +
+          "<p> As a reminder: use the <strong> K-key for yes </strong> and the <strong> L-key for no </strong> </p><br><br>" +
+          "<p> Between every block there will be a short break. </p>" +
+          "<div style='width: 700px;'>"+
+          "<p><br> Put your index finger on the K-key and your middle finger on the L-key</p>" +
+          "<p>Press any key to begin.</p>",
+      post_trial_gap: 1000
+    };
+
     var test_procedure = {
       timeline: [fixation, test, word],
       timeline_variables: full_design,
@@ -305,17 +317,6 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
     }
 
     timeline.push(practice_procedure);
-
-    var practice_end = {
-      type: "html-keyboard-response",
-      stimulus: "<p>You finished the practice round. The actual experiment will now begin </p> " +
-          "<p> As a reminder: use the <strong> K-key for yes </strong> and the <strong> L-key for no </strong> </p><br><br>" +
-          "<p> Between every block there will be a short break. </p>" +
-          "<div style='width: 700px;'>"+
-          "<p>Press any key to begin.</p>",
-      post_trial_gap: 1000
-    };
-
     timeline.push(practice_end);
     timeline.push(test_procedure);
     timeline.push(pause);
