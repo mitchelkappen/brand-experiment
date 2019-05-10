@@ -27,6 +27,7 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
 <script src="plugins/jspsych-categorize-image.js"></script>
 <script src="plugins/jspsych-categorize-html.js"></script>
 <script src="plugins/jspsych-survey-multi-choice.js"></script>
+<script src="plugins/jspsych-image-slider-response.js"></script>
 
 <script src='plugins/jspsych-call-function.js'></script>
 <script src='plugins/jspsych-survey-text.js'></script>
@@ -54,6 +55,20 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
       subject: subject_id,
       });
 
+    /* create condition */
+    var condition = Math.floor(Math.random() * 2); // Random number generation to assign condition
+    if (condition < .5) { // If condition is 1, they get to see the logos with names
+      var rabo_pre_img = ['img/small/rabo1.jpg'];
+      var pepsi_pre_img = ['img/small/pepsi1.jpg'];
+      var nike_pre_img = ['img/small/nike1.jpg'];
+      var starbucks_pre_img = ['img/small/starbucks1.jpg'];
+  } else { //  If condition is 2, they get to see the logos without names
+      var rabo_pre_img = ['img/small/rabo2.jpg'];
+      var pepsi_pre_img = ['img/small/pepsi2.jpg'];
+      var nike_pre_img = ['img/small/nike2.jpg'];
+      var starbucks_pre_img = ['img/small/starbucks2.jpg'];
+    };
+
     var welcome = {
       type: 'instructions',
       pages: ['Welcome to the experiment. Click next to begin.',
@@ -65,6 +80,39 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
     timeline.push(welcome);
 
     /* pre-questionnaire */
+    // Slider scales for images
+    var slider_scale_rabo = {
+      type: 'image-slider-response',
+      stimulus: rabo_pre_img,
+      labels: ['Not at all familiar','Very familiar'],
+      prompt: "<p>How familiar is this logo to you?</p>",
+      response_ends_trial: true
+    }
+
+    var slider_scale_pepsi = {
+      type: 'image-slider-response',
+      stimulus: pepsi_pre_img,
+      labels: ['Not at all familiar','Very familiar'],
+      prompt: "<p>How familiar is this logo to you?</p>",
+      response_ends_trial: true
+    }
+
+    var slider_scale_nike = {
+      type: 'image-slider-response',
+      stimulus: nike_pre_img,
+      labels: ['Not at all familiar','Very familiar'],
+      prompt: "<p>How familiar is this logo to you?</p>",
+      response_ends_trial: true
+    }
+
+    var slider_scale_starbucks = {
+      type: 'image-slider-response',
+      stimulus: starbucks_pre_img,
+      labels: ['Not at all familiar','Very familiar'],
+      prompt: "<p>How familiar is this logo to you?</p>",
+      response_ends_trial: true
+    }
+
     // defining response scales that can be used.
     var scale_1 = ["Strongly Disagree","","Disagree","","Neutral","","Agree","","Strongly Agree"];
 
@@ -108,14 +156,14 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
 
     var demographic_block = {
       type: 'survey-multi-choice',
-      questions: [{prompt: "Gender:", options: gender_options, required:true, horizontal: true,},
-                  {prompt: "Age:", options: age_options, required: true, horizontal: true,},
-                  {prompt: "Dominant hand:", options: hand_options, required: true, horizontal: true,},
-                  {prompt: "Ocupation:", options: occupation_options, required: true, horizontal: true}],
+      questions: [{prompt: "Gender:", options: gender_options, required:false, horizontal: true,},
+                  {prompt: "Age:", options: age_options, required: false, horizontal: true,},
+                  {prompt: "Dominant hand:", options: hand_options, required: false, horizontal: true,},
+                  {prompt: "Ocupation:", options: occupation_options, required: false, horizontal: true}],
     };
 
     var likert_procedure = {
-      timeline: [likert_scale_rabo,likert_scale_pepsi,likert_scale_nike,likert_scale_starbucks,demographic_block],
+      timeline: [slider_scale_rabo,likert_scale_rabo,slider_scale_pepsi,likert_scale_pepsi,slider_scale_nike,likert_scale_nike,slider_scale_starbucks,likert_scale_starbucks,demographic_block],
       randomize_order: false,
       // repetitions: 3
     }
@@ -134,31 +182,36 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
           "<p> Use your <strong> right hand </strong> to respond </p><br>" +
           "<p> Press the <strong> K-key for yes </strong> and the <strong> L-key for no </strong> </p><br><br>" +
           "<p> You will first have a practice round to get used to the task and its tempo </p>" +
-          "<p> Press the <strong> P-key </strong> at any time to have a 30 second break </p>" +
           "<div style='width: 700px;'>"+
           "<p>Press any key to begin.</p>",
       post_trial_gap: 1000
     };
     timeline.push(instructions);
 
-// input cut part here
 
+  if (condition < .5) { // If condition is 1, they get to see the images with pools
     var factors = {
-      logos: ['img/rabo1.png', 'img/rabo2.png','img/rabo3.png',
-              'img/pepsi1.png', 'img/pepsi2.png','img/pepsi3.png',
-              'img/nike1.png', 'img/nike2.png','img/nike3.png',
-              'img/starbucks1.png', 'img/starbucks2.png','img/starbucks3.png'],
-      //      logos: [{'img/rabo1.png', data: {test_part: 'test'}}, {'img/rabo2.png'data: {test_part: 'test'}},{'img/rabo3.png'data: {test_part: 'test'}}],
+      logos: ['img/rabo1.png', 'img/pepsi1.png', 'img/nike1.png', 'img/starbucks1.png'],
       words: ['<div style="font-size:60px;">expensive</div>', '<div style="font-size:60px;">fair</div>',
               '<div style="font-size:60px;">high quality</div>','<div style="font-size:60px;">desirable</div>',]
-      // words: ['img/good.png','img/bad.png','img/beneficial.png','img/harmful.png',
-      //        'img/desirable.png','img/undesirable.png','img/nice.png','img/awful.png']
-    }
-
-    var practice_factors = {
-      practice_logos: ['img/unilever1.png', 'img/unilever2.png','img/unilever3.png'],
-      practice_words: ['<div style="font-size:60px;">good</div>', '<div style="font-size:60px;">bad</div>']
-    }
+          };
+    var practice_factors = { // make it consistent for the practice round
+      practice_logos: ['img/unilever1.png'],
+      practice_words: ['<div style="font-size:60px;">expensive</div>', '<div style="font-size:60px;">fair</div>',
+                       '<div style="font-size:60px;">high quality</div>','<div style="font-size:60px;">desirable</div>',]
+    };
+} else { //  If condition is 2, they get to see the images without pools
+    var factors = {
+      logos: ['img/rabo2.png', 'img/pepsi2.png', 'img/nike2.png', 'img/starbucks2.png'],
+      words: ['<div style="font-size:60px;">expensive</div>', '<div style="font-size:60px;">fair</div>',
+              '<div style="font-size:60px;">high quality</div>','<div style="font-size:60px;">desirable</div>',]
+            };
+    var practice_factors = { // make it consistent for the practice round
+      practice_logos: ['img/unilever2.png'],
+      practice_words: ['<div style="font-size:60px;">expensive</div>', '<div style="font-size:60px;">fair</div>',
+                       '<div style="font-size:60px;">high quality</div>','<div style="font-size:60px;">desirable</div>',]
+            };
+    };
 
     var preloading = ['img/rabo1.png', 'img/rabo2.png','img/rabo3.png',
             'img/pepsi1.png', 'img/pepsi2.png','img/pepsi3.png',
@@ -169,8 +222,6 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
 
     var practice_design = jsPsych.randomization.factorial(practice_factors, 1);
 
-    var big_space = '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0';
-
 // show fixation cross
     var fixation = {
       type: 'html-keyboard-response',
@@ -179,12 +230,6 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
       trial_duration: 900,
       prompt: '<div style= width:100vw ><div style="position:absolute; top:66vh; left:33%; display: inline-block" ;=""><span class="green"> Yes (K) </span></div> <div style="position:absolute; top:66vh; right:33%; display: inline-block" ;=""><span class="red"> No (L)</span></div></div>',
       data: {test_part: 'fixation'},
-      on_finish: function(data){
-      if (data.key_press == 80) {
-        jsPsych.pauseExperiment();
-        setTimeout(jsPsych.resumeExperiment, 30000);
-                                  }
-                                }
     }
 
 // Pause block
@@ -203,13 +248,6 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
       prompt: '<div style= width:100vw ><div style="position:absolute; top:66vh; left:33%; display: inline-block" ;=""><span class="green"> Yes (K) </span></div> <div style="position:absolute; top:66vh; right:33%; display: inline-block" ;=""><span class="red"> No (L)</span></div></div>',
       trial_duration: 750,
       data: {test_part: 'logo'},
-      on_finish: function(data){
-      if (data.key_press == 80) {
-        jsPsych.pauseExperiment();
-        setTimeout(jsPsych.resumeExperiment, 30000);
-                                  }
-                                  prompt: 'TEST';
-                                }
     }
 // show practice logo
     var practice_test = {
@@ -220,13 +258,6 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
       prompt: '<div style= width:100vw ><div style="position:absolute; top:66vh; left:33%; display: inline-block" ;=""><span class="green"> Yes (K) </span></div> <div style="position:absolute; top:66vh; right:33%; display: inline-block" ;=""><span class="red"> No (L)</span></div></div>',
       trial_duration: 750,
       data: {test_part: 'practice logo'},
-      on_finish: function(data){
-      if (data.key_press == 80) {
-        jsPsych.pauseExperiment();
-        setTimeout(jsPsych.resumeExperiment, 30000);
-        prompt: 'TEST';
-                                  }
-                                }
     }
 // show target word
     var word = {
@@ -235,19 +266,13 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
       stimulus: jsPsych.timelineVariable('words'),
       choices: ['k','l','p'], //a-s for left-handed, k-l for right-handed
       data: jsPsych.timelineVariable('data'),
-      //trial_duration: 1500,
+      trial_duration: 1500,
       show_stim_with_feedback: false,
       incorrect_text: "<p class='prompt'> </p>",
       prompt: '<div style= width:100vw ><div style="position:absolute; top:66vh; left:33%; display: inline-block" ;=""><span class="green"> Yes (K) </span></div> <div style="position:absolute; top:66vh; right:33%; display: inline-block" ;=""><span class="red"> No (L)</span></div></div>',
       feedback_duration: 1400, // duration of white before next trial starts
       timeout_message: '<div class = centerbox><div class = center-text>Too Slow!</div></div>',
       data: {test_part: 'word'},
-      on_finish: function(data){
-      if (data.key_press == 80) {
-        jsPsych.pauseExperiment();
-        setTimeout(jsPsych.resumeExperiment, 30000);
-                                  }
-                                }
     }
 // show practice target word
     var practice_word = {
@@ -256,38 +281,15 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
       stimulus: jsPsych.timelineVariable('practice_words'),
       choices: ['k','l','p'], //a-s for left-handed, k-l for right-handed
       data: jsPsych.timelineVariable('data'),
-      //trial_duration: 1500,
+      trial_duration: 1500,
       show_stim_with_feedback: false,
       incorrect_text: "<p class='prompt'> </p>",
-      // prompt: '<p class="midden"><span class="green">Yes (K)' + big_space +  '<span class="red">No (L)</span> </p></p>',
       prompt: '<div style= width:100vw ><div style="position:absolute; top:66vh; left:33%; display: inline-block" ;=""><span class="green"> Yes (K) </span></div> <div style="position:absolute; top:66vh; right:33%; display: inline-block" ;=""><span class="red"> No (L)</span></div></div>',
       feedback_duration: 1400, // duration of white before next trial starts
       timeout_message: '<div class = centerbox><div class = center-text>Too Slow!</div></div>',
       data: {test_part: 'practice word'},
-      on_finish: function(data){
-      if (data.key_press == 80) {
-        jsPsych.pauseExperiment();
-        setTimeout(jsPsych.resumeExperiment, 30000);
-                                  }
-                                }
                               }
-/* This method is to be used when the target word is presented as an image
-    var word = {
-      // type: 'image-keyboard-response',
-      type: "categorize-image",
-      data: { screen_type: 'targetWord'},
-      stimulus: jsPsych.timelineVariable('words'),
-      choices: ['f','j'],
-      data: jsPsych.timelineVariable('data'),
-      trial_duration: 1500,
-      //timeout_message: "Too Slow!"
-      show_stim_with_feedback: false,
-      incorrect_text: "<p class='prompt'> </p>",
-      prompt: "<br><br><br><br><br><br><br><br><br><pre>Yes (F)                                        (J) No</pre>",
-      feedback_duration: 1400, // duration of white before next trial starts
-      timeout_message: '<div class = centerbox><div class = center-text>Respond Faster!</div></div>',
-    }
-*/
+
     var practice_procedure = {
       timeline: [fixation, practice_test, practice_word],
       timeline_variables: practice_design,
@@ -308,24 +310,24 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
       type: "html-keyboard-response",
       stimulus: "<p>You finished the practice round. The actual experiment will now begin </p> " +
           "<p> As a reminder: use the <strong> K-key for yes </strong> and the <strong> L-key for no </strong> </p><br><br>" +
-          "<p> Press the <strong> P-key </strong> at any time to have a 30 second break </p>" +
+          "<p> Between every block there will be a short break. </p>" +
           "<div style='width: 700px;'>"+
-          /*"<div style='float: left;'><img src='img/blue.png'></img>" +
-          "<p class='small'><strong>Press the F key</strong></p></div>" +
-          "<div class='float: right;'><img src='img/orange.png'></img>" +
-          "<p class='small'><strong>Press the J key</strong></p></div>" +
-          "</div>"+*/
           "<p>Press any key to begin.</p>",
       post_trial_gap: 1000
     };
 
     timeline.push(practice_end);
+    timeline.push(test_procedure);
+    timeline.push(pause);
+    timeline.push(test_procedure);
+    timeline.push(pause);
+    timeline.push(test_procedure);
 
-    timeline.push(test_procedure);
-    timeline.push(pause);
-    timeline.push(test_procedure);
-    timeline.push(pause);
-    timeline.push(test_procedure);
+    // Collect e-mail adress
+    var email = {
+      type: 'survey-text',
+      questions: [{prompt: "In a few days, we would like to ask you a few questions about this research which will take 2 minutes. <br> At what e-mail adress can we contact you?"}],
+    };
 
     /* define debrief */
     var debrief_block = {
@@ -338,6 +340,7 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
           }
         };
 
+    timeline.push(email);
     timeline.push(debrief_block);
 
     timeline.push({
