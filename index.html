@@ -62,11 +62,15 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
       var pepsi_pre_img = ['img/small/pepsi1.jpg'];
       var nike_pre_img = ['img/small/nike1.jpg'];
       var starbucks_pre_img = ['img/small/starbucks1.jpg'];
+      var plus_pre_img = ['img/small/plus1.jpg'];
+      var kfc_pre_img = ['img/small/kfc1.jpg'];
   } else { //  If condition is 2, they get to see the logos without names
       var rabo_pre_img = ['img/small/rabo2.jpg'];
       var pepsi_pre_img = ['img/small/pepsi2.jpg'];
       var nike_pre_img = ['img/small/nike2.jpg'];
       var starbucks_pre_img = ['img/small/starbucks2.jpg'];
+      var plus_pre_img = ['img/small/plus2.jpg'];
+      var kfc_pre_img = ['img/small/kfc2.jpg'];
     };
 
     var welcome = {
@@ -113,6 +117,22 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
       response_ends_trial: true
     }
 
+    var slider_scale_plus = {
+      type: 'image-slider-response',
+      stimulus: plus_pre_img,
+      labels: ['Not at all familiar','Very familiar'],
+      prompt: "<p>How familiar are you with this logo?</p>",
+      response_ends_trial: true
+    }
+
+    var slider_scale_kfc = {
+      type: 'image-slider-response',
+      stimulus: kfc_pre_img,
+      labels: ['Not at all familiar','Very familiar'],
+      prompt: "<p>How familiar are you with this logo?</p>",
+      response_ends_trial: true
+    }
+
     // defining response scales that can be used.
     var scale_1 = ["Strongly Disagree","","Disagree","","Neutral","","Agree","","Strongly Agree"];
 
@@ -145,7 +165,23 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
       questions: [{prompt: "I am familiar with the brand Starbucks", labels: scale_1, required:true},
       {prompt: "If Starbucks were not available, it would make little difference to me if I had to choose another brand", labels: scale_1, required:true},
       {prompt: " I consider myself to be highly loyal to Starbucks", labels: scale_1, required:true},
-      {prompt: " When another brand is cheaper, I will generally use it rather than Starbucks", labels: scale_1, required:true}],
+      {prompt: " When another brand is cheaper, I will generally buy it rather than Starbucks", labels: scale_1, required:true}],
+      };
+
+    var likert_scale_plus = {
+      type: 'survey-likert',
+      questions: [{prompt: "I am familiar with the brand Plus", labels: scale_1, required:true},
+      {prompt: "If Plus were not available, it would make little difference to me if I had to choose another brand", labels: scale_1, required:true},
+      {prompt: " I consider myself to be highly loyal to Plus", labels: scale_1, required:true},
+      {prompt: " When another shop is cheaper, I will generally go there rather than Plus", labels: scale_1, required:true}],
+      };
+
+    var likert_scale_kfc = {
+      type: 'survey-likert',
+      questions: [{prompt: "I am familiar with the brand KFC", labels: scale_1, required:true},
+      {prompt: "If KFC were not available, it would make little difference to me if I had to choose another brand", labels: scale_1, required:true},
+      {prompt: " I consider myself to be highly loyal to KFC", labels: scale_1, required:true},
+      {prompt: " When another brand is cheaper, I will generally buy it rather than KFC", labels: scale_1, required:true}],
       };
       // Insert more brands here
 
@@ -163,9 +199,10 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
     };
 
     var likert_procedure = {
-      timeline: [slider_scale_rabo,likert_scale_rabo,slider_scale_pepsi,likert_scale_pepsi,slider_scale_nike,likert_scale_nike,slider_scale_starbucks,likert_scale_starbucks,demographic_block],
+      timeline: [slider_scale_rabo,likert_scale_rabo,slider_scale_pepsi,likert_scale_pepsi,
+        slider_scale_nike,likert_scale_nike,slider_scale_starbucks,likert_scale_starbucks,
+        slider_scale_plus,likert_scale_plus,slider_scale_kfc,likert_scale_kfc,demographic_block],
       randomize_order: false,
-      // repetitions: 3
     }
 
     // timeline.push(likert_scale);
@@ -183,7 +220,7 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
           "<p> Press the <strong> K-key for yes </strong> and the <strong> L-key for no </strong> </p><br><br>" +
           "<p> You will first have a practice round to get used to the task and its tempo </p>" +
           "<div style='width: 700px;'>"+
-          "<p><br> Put your index finger on the K-key and your middle finger on the L-key</p>" +
+          "<p><br><strong> Put your index finger on the K-key and your middle finger on the L-key </strong></p>" +
           "<p>Press any key to begin.</p>",
       post_trial_gap: 1000
     };
@@ -192,23 +229,23 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
 
   if (condition < .5) { // If condition is 1, they get to see the images with pools
     var factors = {
-      logos: ['img/rabo1.jpg', 'img/pepsi1.jpg', 'img/nike1.jpg', 'img/starbucks1.jpg'],
+      logos: ['img/rabo1.jpg', 'img/pepsi1.jpg', 'img/nike1.jpg', 'img/starbucks1.jpg', 'img/plus1.jpg', 'img/kfc1.jpg'],
       words: ['<div style="font-size:60px;">expensive</div>', '<div style="font-size:60px;">fair</div>',
               '<div style="font-size:60px;">high quality</div>','<div style="font-size:60px;">desirable</div>',]
           };
     var practice_factors = { // make it consistent for the practice round
-      practice_logos: ['img/unilever1.jpg'],
+      practice_logos: ['img/audi1.jpg','img/airbnb1.jpg'],
       practice_words: ['<div style="font-size:60px;">expensive</div>', '<div style="font-size:60px;">fair</div>',
                        '<div style="font-size:60px;">high quality</div>','<div style="font-size:60px;">desirable</div>',]
     };
 } else { //  If condition is 2, they get to see the images without pools
     var factors = {
-      logos: ['img/rabo2.jpg', 'img/pepsi2.jpg', 'img/nike2.jpg', 'img/starbucks2.jpg'],
+      logos: ['img/rabo2.jpg', 'img/pepsi2.jpg', 'img/nike2.jpg', 'img/starbucks2.jpg', 'img/plus2.jpg', 'img/kfc2.jpg'],
       words: ['<div style="font-size:60px;">expensive</div>', '<div style="font-size:60px;">fair</div>',
               '<div style="font-size:60px;">high quality</div>','<div style="font-size:60px;">desirable</div>',]
             };
     var practice_factors = { // make it consistent for the practice round
-      practice_logos: ['img/unilever2.jpg'],
+      practice_logos: ['img/audi2.jpg','img/airbnb2.jpg'],
       practice_words: ['<div style="font-size:60px;">expensive</div>', '<div style="font-size:60px;">fair</div>',
                        '<div style="font-size:60px;">high quality</div>','<div style="font-size:60px;">desirable</div>',]
             };
@@ -217,7 +254,9 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
     var preloading = ['img/rabo1.jpg', 'img/rabo2.jpg',
             'img/pepsi1.jpg', 'img/pepsi2.jpg',
             'img/nike1.jpg', 'img/nike2.jpg',
-            'img/starbucks1.jpg', 'img/starbucks2.jpg'];
+            'img/starbucks1.jpg', 'img/starbucks2.jpg',
+            'img/plus1.jpg', 'img/plus2.jpg',
+            'img/kfc1.jpg', 'img/kfc2.jpg',];
 
     var full_design = jsPsych.randomization.factorial(factors, 1);
 
