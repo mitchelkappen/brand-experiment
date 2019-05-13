@@ -75,9 +75,8 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
 
     var welcome = {
       type: 'instructions',
-      pages: ['Welcome to the experiment. Click next to begin.',
-        'You are going to participate in a study on brands and their logo\'s',
-        'Before we start the experiment, we will ask you several questions about how you feel about the brands in this study'],
+      pages: ['Welcome to the experiment. <br><br><br> You are going to participate in a study on brands and their logo\'s <br> Click next to begin.',
+        'Before we start the experiment, we will ask you several general questions <br> and several questions on your attitude towards the brands in this study'],
       show_clickable_nav: true,
       show_page_number: false
     }
@@ -372,12 +371,10 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
     /* define debrief */
     var debrief_block = {
       type: "html-keyboard-response",
-      stimulus: function() {
-
-    var trials = jsPsych.data.get().filter({test_part: 'test'});
-    var rt = Math.round(trials.select('rt').mean());
-    var trialNums = trials.count();
-          }
+      stimulus: "<p> Thank you for participating in this experiment!</p> " +
+                "<p> If you have any questions or if you are interested in the results, please e-mail me at </p>" +
+                "<p><br>mitchel@alpha.one<br></p>" +
+                "<p> Press any key to shut down the experiment </p>"
         };
 
     timeline.push(email);
