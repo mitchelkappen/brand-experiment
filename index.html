@@ -185,7 +185,7 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
       // Insert more brands here
 
     var gender_options = ["Male","Female","Other"];
-    var age_options = ["<18","18-25","26-35","35-50","50+"];
+    var age_options = ["<18","18-25","26-35","36-45","46-55","56+"];
     var hand_options = ["Left","Right"];
     var occupation_options = ["Student","Employed","Other"]
 
@@ -211,14 +211,14 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
       type: "html-keyboard-response",
       stimulus: "<p>In this experiment, you will first see a fixation cross " +
           "on the screen.</p><p>Then, shortly, a <strong>logo</strong> " +
-          "is shown followed by a <strong> word </strong>.</p>" +
+          "is shown followed by a <strong> word</strong>.</p>" +
           "<p>Answer whether you feel the word matches the logo " +
           "as fast as you can.</p>" +
-          "<p> Use your <strong> right hand </strong> to respond </p><br>" +
-          "<p> Press the <strong> Left Arrow-key for yes </strong> and the <strong> Right Arrow-key for no </strong> </p><br><br>" +
-          "<p> You will first have a practice round to get used to the task and its tempo </p>" +
+          "<p> Use your <strong> right hand </strong> to respond.</p><br>" +
+          "<p> Press the <strong> Left Arrow-key for yes </strong> and the <strong> Right Arrow-key for no</strong>. </p><br><br>" +
+          "<p> You will first have a practice round to get used to the task and its tempo.</p>" +
           "<div style='width: 700px;'>"+
-          "<p><br><strong> Put your index finger on the Left Arrow-key and your middle finger on the Right Arrow-key </strong></p>" +
+          "<p><br><strong> Put your fingers on the Left Arrow-key and on the Right Arrow-key</strong>.</p>" +
           "<p>Press any key to begin.</p>",
       post_trial_gap: 1000
     };
@@ -342,9 +342,9 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
     var practice_end = {
       type: "html-keyboard-response",
       stimulus: "<p>You finished the practice round. The actual experiment will now begin </p> " +
-          "<p> As a reminder: use the <strong> Left Arrow-key for yes </strong> (index finger) and the <strong> Right Arrow-key for no </strong> (middle finger) </p><br><br>" +
+          "<p> As a reminder: use the <strong> Left Arrow-key for yes </strong>and the <strong> Right Arrow-key for no</strong>.</p><br><br>" +
           "<p> Between every block there will be a short break. </p>" +
-          "<p><br> Put your index finger on the Left Arrow-key and your middle finger on the Right Arrow-key</p>" +
+          "<p><br> Put your fingers on the Left Arrow-key and on the Right Arrow-key.</p>" +
           "<p>Press any key to begin.</p>",
       post_trial_gap: 1000
     };
