@@ -137,50 +137,50 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
 
     var likert_scale_rabo = {
       type: 'survey-likert',
-      questions: [{prompt: "I am familiar with the brand Rabobank", labels: scale_1, required:true},
-      {prompt:  "If Rabobank were not available, it would make little difference to me if I had to choose another brand", labels: scale_1, required:true},
-      {prompt: "I consider myself to be highly loyal to Rabobank", labels: scale_1, required:true},
-      {prompt: "When another brand is cheaper, I will generally use it rather than Rabobank", labels: scale_1, required:true}],
+      questions: [{prompt: "I am familiar with the brand Rabobank", labels: scale_1, required:false},
+      {prompt:  "If Rabobank were not available, it would make little difference to me if I had to choose another brand", labels: scale_1, required:false},
+      {prompt: "I consider myself to be highly loyal to Rabobank", labels: scale_1, required:false},
+      {prompt: "When another brand is cheaper, I will generally use it rather than Rabobank", labels: scale_1, required:false}],
       };
 
     var likert_scale_nike = {
       type: 'survey-likert',
-      questions: [{prompt: "I am familiar with the brand Nike", labels: scale_1, required:true},
-      {prompt:  "If Nike were not available, it would make little difference to me if I had to choose another brand", labels: scale_1, required:true},
-      {prompt: "I consider myself to be highly loyal to Nike", labels: scale_1, required:true},
-      {prompt: "When another brand is cheaper, I will generally buy it rather than Nike", labels: scale_1, required:true}],
+      questions: [{prompt: "I am familiar with the brand Nike", labels: scale_1, required:false},
+      {prompt:  "If Nike were not available, it would make little difference to me if I had to choose another brand", labels: scale_1, required:false},
+      {prompt: "I consider myself to be highly loyal to Nike", labels: scale_1, required:false},
+      {prompt: "When another brand is cheaper, I will generally buy it rather than Nike", labels: scale_1, required:false}],
       };
 
     var likert_scale_pepsi = {
       type: 'survey-likert',
-      questions: [{prompt: "I am familiar with the brand Pepsi", labels: scale_1, required:true},
-      {prompt:  "If Pepsi were not available, it would make little difference to me if I had to choose another brand", labels: scale_1, required:true},
-      {prompt: "I consider myself to be highly loyal to Pepsi", labels: scale_1, required:true},
-      {prompt: "When another brand is cheaper, I will generally buy it rather than Pepsi", labels: scale_1, required:true}],
+      questions: [{prompt: "I am familiar with the brand Pepsi", labels: scale_1, required:false},
+      {prompt:  "If Pepsi were not available, it would make little difference to me if I had to choose another brand", labels: scale_1, required:false},
+      {prompt: "I consider myself to be highly loyal to Pepsi", labels: scale_1, required:false},
+      {prompt: "When another brand is cheaper, I will generally buy it rather than Pepsi", labels: scale_1, required:false}],
       };
 
     var likert_scale_starbucks = {
       type: 'survey-likert',
-      questions: [{prompt: "I am familiar with the brand Starbucks", labels: scale_1, required:true},
-      {prompt: "If Starbucks were not available, it would make little difference to me if I had to choose another brand", labels: scale_1, required:true},
-      {prompt: " I consider myself to be highly loyal to Starbucks", labels: scale_1, required:true},
-      {prompt: " When another brand is cheaper, I will generally buy it rather than Starbucks", labels: scale_1, required:true}],
+      questions: [{prompt: "I am familiar with the brand Starbucks", labels: scale_1, required:false},
+      {prompt: "If Starbucks were not available, it would make little difference to me if I had to choose another brand", labels: scale_1, required:false},
+      {prompt: " I consider myself to be highly loyal to Starbucks", labels: scale_1, required:false},
+      {prompt: " When another brand is cheaper, I will generally buy it rather than Starbucks", labels: scale_1, required:false}],
       };
 
     var likert_scale_plus = {
       type: 'survey-likert',
-      questions: [{prompt: "I am familiar with the brand Plus", labels: scale_1, required:true},
-      {prompt: "If Plus were not available, it would make little difference to me if I had to choose another brand", labels: scale_1, required:true},
-      {prompt: " I consider myself to be highly loyal to Plus", labels: scale_1, required:true},
-      {prompt: " When another shop is cheaper, I will generally go there rather than Plus", labels: scale_1, required:true}],
+      questions: [{prompt: "I am familiar with the brand Plus", labels: scale_1, required:false},
+      {prompt: "If Plus were not available, it would make little difference to me if I had to choose another brand", labels: scale_1, required:false},
+      {prompt: " I consider myself to be highly loyal to Plus", labels: scale_1, required:false},
+      {prompt: " When another shop is cheaper, I will generally go there rather than Plus", labels: scale_1, required:false}],
       };
 
     var likert_scale_kfc = {
       type: 'survey-likert',
-      questions: [{prompt: "I am familiar with the brand KFC", labels: scale_1, required:true},
-      {prompt: "If KFC were not available, it would make little difference to me if I had to choose another brand", labels: scale_1, required:true},
-      {prompt: " I consider myself to be highly loyal to KFC", labels: scale_1, required:true},
-      {prompt: " When another brand is cheaper, I will generally buy it rather than KFC", labels: scale_1, required:true}],
+      questions: [{prompt: "I am familiar with the brand KFC", labels: scale_1, required:false},
+      {prompt: "If KFC were not available, it would make little difference to me if I had to choose another brand", labels: scale_1, required:false},
+      {prompt: " I consider myself to be highly loyal to KFC", labels: scale_1, required:false},
+      {prompt: " When another brand is cheaper, I will generally buy it rather than KFC", labels: scale_1, required:false}],
       };
       // Insert more brands here
 
@@ -191,10 +191,10 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
 
     var demographic_block = {
       type: 'survey-multi-choice',
-      questions: [{prompt: "Gender:", options: gender_options, required:true, horizontal: true,},
-                  {prompt: "Age:", options: age_options, required: true, horizontal: true,},
-                  {prompt: "Dominant hand:", options: hand_options, required: true, horizontal: true,},
-                  {prompt: "Ocupation:", options: occupation_options, required: true, horizontal: true}],
+      questions: [{prompt: "Gender:", options: gender_options, required:false, horizontal: true,},
+                  {prompt: "Age:", options: age_options, required: false, horizontal: true,},
+                  {prompt: "Dominant hand:", options: hand_options, required: false, horizontal: true,},
+                  {prompt: "Ocupation:", options: occupation_options, required: false, horizontal: true}],
     };
 
     var likert_procedure = {
@@ -357,11 +357,12 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
     timeline.push(practice_procedure);
     timeline.push(practice_end);
     timeline.push(test_procedure);
+/*
     timeline.push(pause);
     timeline.push(test_procedure);
     timeline.push(pause);
     timeline.push(test_procedure);
-    
+*/
     // Collect e-mail adress
     var email = {
       type: 'survey-text',
@@ -401,10 +402,10 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
       jsPsych.data.getInteractionData();
 
 
-      jsPsych.data.get().localSave('csv','brand-experiment-results.csv'); // Save localy as csv
+      jsPsych.data.get().localSave('json','mydata.json'); // Save localy as csv
 //      jsPsych.data.get().localSave('json','mydata.json'); // Save localy as json // not working yet
       // When collecting online, visit: https://www.jspsych.org/overview/data/ for instructions on saving
-      jsPsych.data.localSave('brand-experiment-results.csv', 'csv');
+//      jsPsych.data.localSave('brand-experiment-results.csv', 'csv');
     }
     });
 
