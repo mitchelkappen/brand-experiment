@@ -204,7 +204,6 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
       randomize_order: false,
     }
 
-    // timeline.push(likert_scale);
     timeline.push(likert_procedure);
 
     /* define instructions trial */
@@ -216,10 +215,10 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
           "<p>Answer whether you feel the word matches the logo " +
           "as fast as you can.</p>" +
           "<p> Use your <strong> right hand </strong> to respond </p><br>" +
-          "<p> Press the <strong> K-key for yes </strong> and the <strong> L-key for no </strong> </p><br><br>" +
+          "<p> Press the <strong> Left Arrow-key for yes </strong> and the <strong> Right Arrow-key for no </strong> </p><br><br>" +
           "<p> You will first have a practice round to get used to the task and its tempo </p>" +
           "<div style='width: 700px;'>"+
-          "<p><br><strong> Put your index finger on the K-key and your middle finger on the L-key </strong></p>" +
+          "<p><br><strong> Put your index finger on the Left Arrow-key and your middle finger on the Right Arrow-key </strong></p>" +
           "<p>Press any key to begin.</p>",
       post_trial_gap: 1000
     };
@@ -250,7 +249,9 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
             };
     };
 
-    var preloading = ['img/rabo1.jpg', 'img/rabo2.jpg',
+    var preloading = ['img/airbnb.jpg','img/airbnb2.jpg',
+            'img/audi2.jpg','img/audi2.jpg',
+            'img/rabo1.jpg', 'img/rabo2.jpg',
             'img/pepsi1.jpg', 'img/pepsi2.jpg',
             'img/nike1.jpg', 'img/nike2.jpg',
             'img/starbucks1.jpg', 'img/starbucks2.jpg',
@@ -303,7 +304,8 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
       type: "categorize-html",
       data: { screen_type: 'targetWord'},
       stimulus: jsPsych.timelineVariable('words'),
-      choices: ['k','l','p'], //a-s for left-handed, k-l for right-handed
+      // choices: ['k','l','p'], //a-s for left-handed, k-l for right-handed
+      choices: [37,39], //37 is left arrow, 39 is right arrow
       data: jsPsych.timelineVariable('data'),
       trial_duration: 1500,
       show_stim_with_feedback: false,
@@ -318,7 +320,8 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
       type: "categorize-html",
       data: { screen_type: 'practice_targetWord'},
       stimulus: jsPsych.timelineVariable('practice_words'),
-      choices: ['k','l','p'], //a-s for left-handed, k-l for right-handed
+      // choices: ['k','l','ArrowLeft','ArrowRight'], //a-s for left-handed, k-l for right-handed
+      choices: [37,39], //37 is left arrow, 39 is right arrow
       data: jsPsych.timelineVariable('data'),
       trial_duration: 1500,
       show_stim_with_feedback: false,
@@ -339,10 +342,9 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
     var practice_end = {
       type: "html-keyboard-response",
       stimulus: "<p>You finished the practice round. The actual experiment will now begin </p> " +
-          "<p> As a reminder: use the <strong> K-key for yes </strong> and the <strong> L-key for no </strong> </p><br><br>" +
+          "<p> As a reminder: use the <strong> Left Arrow-key for yes </strong> (index finger) and the <strong> Right Arrow-key for no </strong> (middle finger) </p><br><br>" +
           "<p> Between every block there will be a short break. </p>" +
-          "<div style='width: 700px;'>"+
-          "<p><br> Put your index finger on the K-key and your middle finger on the L-key</p>" +
+          "<p><br> Put your index finger on the Left Arrow-key and your middle finger on the Right Arrow-key</p>" +
           "<p>Press any key to begin.</p>",
       post_trial_gap: 1000
     };
@@ -361,7 +363,7 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
     timeline.push(test_procedure);
     timeline.push(pause);
     timeline.push(test_procedure);
-    
+
     // Collect e-mail adress
     var email = {
       type: 'survey-text',
@@ -374,7 +376,7 @@ span.red { color:#FF0000;font-weight:bold;font-family:Calibri;font-size:20;   //
       stimulus: "<p> Thank you for participating in this experiment!</p> " +
                 "<p> If you have any questions or if you are interested in the results, please e-mail me at </p>" +
                 "<p><br>mitchel@alpha.one<br></p>" +
-                "<p> Press any key to shut down the experiment </p>"
+                "<p> Press any key to shut down the experiment and save the data.</p>"
         };
 
     timeline.push(email);
